@@ -23,6 +23,7 @@ public class User {
     String password;
 
     public static UserResponse of(User user) {
+        if (user == null) return new UserResponse(null, null, null);
         return new UserResponse(user.getId(), user.getUsername());
     }
 
