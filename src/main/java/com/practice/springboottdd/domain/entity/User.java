@@ -1,5 +1,6 @@
 package com.practice.springboottdd.domain.entity;
 
+import com.practice.springboottdd.domain.dto.SignUpResponse;
 import com.practice.springboottdd.domain.dto.UserResponse;
 import lombok.*;
 
@@ -22,9 +23,14 @@ public class User {
     String password;
 
     public static UserResponse of(User user) {
-        return UserResponse.builder()
-                .id(user.getId())
+        return new UserResponse(user.getId(), user.getUsername());
+    }
+
+    public static SignUpResponse ofSignUpResponse(User user) {
+
+        return SignUpResponse.builder()
                 .username(user.getUsername())
+                .message("가입이 완료되었습니다.")
                 .build();
     }
 }

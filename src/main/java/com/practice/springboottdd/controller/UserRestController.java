@@ -1,12 +1,11 @@
 package com.practice.springboottdd.controller;
 
+import com.practice.springboottdd.domain.dto.SignUpRequest;
+import com.practice.springboottdd.domain.dto.SignUpResponse;
 import com.practice.springboottdd.domain.dto.UserResponse;
 import com.practice.springboottdd.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -24,4 +23,9 @@ public class UserRestController {
         return ResponseEntity.ok().body(userResponse);
     }
 
+    @PostMapping("/credentials")
+    public ResponseEntity<SignUpResponse> addSingleUser(@RequestBody SignUpRequest signUpRequest) {
+        SignUpResponse signUpResponse = userService.signUpUser(signUpRequest);
+        return ResponseEntity.ok().body(signUpResponse);
+    }
 }
