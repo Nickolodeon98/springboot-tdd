@@ -37,8 +37,10 @@ class UserRestControllerTest {
         
         given(userService.getSingleUser(1L)).willReturn(userResponse);
 
+        Long id = 1L;
 
-        String url = "/api/v1/users";
+        String url = String.format("/api/v1/users/%d", id);
+
         mockMvc.perform(get(url))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())

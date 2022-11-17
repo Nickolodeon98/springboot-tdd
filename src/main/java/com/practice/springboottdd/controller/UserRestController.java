@@ -18,9 +18,9 @@ public class UserRestController {
         this.userService = userService;
     }
 
-    @GetMapping("")
-    public ResponseEntity<UserResponse> selectSingleRecord() {
-        UserResponse userResponse = userService.getSingleUser(1L);
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponse> selectSingleRecord(@PathVariable Long id) {
+        UserResponse userResponse = userService.getSingleUser(id);
         return ResponseEntity.ok().body(userResponse);
     }
 
