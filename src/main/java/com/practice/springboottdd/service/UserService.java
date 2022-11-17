@@ -18,8 +18,9 @@ public class UserService {
     }
 
     public UserResponse getSingleUser(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return User.of(user.get());
+        Optional<User> tmpUser = userRepository.findById(id);
+        User user = tmpUser.orElse(null);
+        return User.of(user);
     }
 
     public SignUpResponse signUpUser(SignUpRequest signUpRequest) {
